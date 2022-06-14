@@ -43,7 +43,6 @@ class ImageReturn(Resource):
             encoded_string = base64.b64encode(image_file.read())
             # url = data['url']
             # id = data['id']
-            data['response'] = filename[-1]
             data['image64'] = encoded_string
         os.remove(filename[-1])
         return marshal(data, resource_fields)
