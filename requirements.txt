@@ -1,0 +1,10 @@
+Flask==0.8
+flask_restful
+PIL
+requests
+io
+json
+asyncio
+os
+glob
+base64
