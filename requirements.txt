@@ -2,9 +2,3 @@ Flask
 flask_restful
 Pillow
 requests
-io
-json
-asyncio
-os
-glob
-base64
