@@ -21,8 +21,8 @@ resource_fields = {
     'response': fields.String(default='')
 }
 parser = reqparse.RequestParser()
-parser.add_argument('url')
-parser.add_argument('id')
+parser.add_argument('url', location='args')
+parser.add_argument('id', location='args')
 # parser.add_argument('api_key', required=True)
 
 class ImageReturn(Resource):
