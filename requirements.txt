@@ -1,4 +1,4 @@
-Flask==0.8
+Flask
 flask_restful
 PIL
 requests
