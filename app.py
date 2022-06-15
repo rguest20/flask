@@ -32,19 +32,19 @@ class ImageReturn(Resource):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         response = requests.get(str(url) + 'wp-json/wp/v2/media/' + str(id), headers=headers)
         source_url = json.loads(response.content)['source_url']
+        filename = source_url.split('/')[-1]
         image_get = requests.get(source_url, headers=headers, stream=True)
         image = Image.open(BytesIO(image_get.content))
-        filename = source_url.split('/')
         (x,y) = (image.size)
         if x > 1080 or y> 1080:
             image.thumbnail((1080,1080))
-        image.save(filename[-1], optimize=True, quality=85)
-        with open(filename[-1], "rb") as image_file:
+        image.save(filename, optimize=True, quality=85)
+        with open(filename, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
             # url = data['url']
             # id = data['id']
             data['image64'] = encoded_string
-        os.remove(filename[-1])
+        os.remove(filename)
         return marshal(data, resource_fields)
 
 api.add_resource(ImageReturn, '/')
