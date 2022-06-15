@@ -5,6 +5,7 @@ import os
 import glob
 import base64
 
+
 from PIL import Image, ImageFile
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, marshal
