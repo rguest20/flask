@@ -1,6 +1,6 @@
 Flask
 flask_restful
-PIL
+Pillow
 requests
 io
 json
