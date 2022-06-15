@@ -18,7 +18,7 @@ api = Api(app)
 
 resource_fields = {
     'image64': fields.String(default='none'),
-    'response': fields.String(default='')
+    'response': fields.String(default='200')
 }
 parser = reqparse.RequestParser()
 parser.add_argument('url', location='args')
@@ -28,8 +28,8 @@ parser.add_argument('id', location='args')
 class ImageReturn(Resource):
     def get(self):
         data = parser.parse_args()
-        url  = 'https://supremepetfoods.com/'
-        id = 26715
+        url  = data['url']
+        id = data['id']
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         response = requests.get(str(url) + 'wp-json/wp/v2/media/' + str(id), headers=headers)
         source_url = json.loads(response.content)['source_url']
