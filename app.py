@@ -44,7 +44,7 @@ class ImageReturn(Resource):
             encoded_string = base64.b64encode(image_file.read())
             # url = data['url']
             # id = data['id']
-            data['image64'] = encoded_string
+            data['image64'] = encoded_string.decode("utf-8")
         ext = os.path.splitext(filename)
         data['ext'] = ext[1]
         os.remove(filename)
