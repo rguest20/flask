@@ -29,10 +29,8 @@ class ImageReturn(Resource):
     def get(self):
         data = parser.parse_args()
         url  = data['url']
-        id = data['id']
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-        response = requests.get(str(url) + 'wp-json/wp/v2/media/' + str(id), headers=headers)
-        source_url = json.loads(response.content)['source_url']
+        source_url = url
         filename = source_url.split('/')[-1]
         image_get = requests.get(source_url, headers=headers, stream=True)
         image = Image.open(BytesIO(image_get.content))
