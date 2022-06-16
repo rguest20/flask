@@ -18,7 +18,7 @@ api = Api(app)
 
 resource_fields = {
     'image64': fields.String(default='none'),
-    'response': fields.String(default='200')
+    'ext': fields.String(default='png')
 }
 parser = reqparse.RequestParser()
 parser.add_argument('url', location='args')
@@ -45,6 +45,8 @@ class ImageReturn(Resource):
             # url = data['url']
             # id = data['id']
             data['image64'] = encoded_string
+        ext = os.path.splitext(filename)
+        data['ext'] = ext[1]
         os.remove(filename)
         return marshal(data, resource_fields)
 
